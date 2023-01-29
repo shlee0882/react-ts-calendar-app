@@ -1,0 +1,44 @@
+html,
+body,
+div#root,
+div.App {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.color-red {
+    color: #d10000;
+}
+
+.color-blue {
+    color: blue;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.div-center {
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}
+
+.div {
+    overflow: hidden
+}
+
+;
+
+
+.ellipsis {
+    width: "80px";
+    height: "50px";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
