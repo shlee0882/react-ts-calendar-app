@@ -151,11 +151,21 @@ const recHolidayCalc = (holidayArray: Array<RtnArrType>, selectHoliday:string) =
       }
       if(dayOfWeek == 'Tuesday' || dayOfWeek == 'Thursday'){
         let pushCnt = 0;
+
         for(var i=0; i<7; i++){
           let val = 1;
           let dateAdd1: any;
-          if(i == 0) dateAdd1 = date.subtract(val, 'days')
-          else dateAdd1 = date.add(val, 'days')
+          if(dayOfWeek == 'Tuesday' && Number(selectHoliday) == 1){
+            dateAdd1 = date.subtract(val, 'days')
+          }else if(dayOfWeek == 'Thursday' && Number(selectHoliday) == 1){
+            dateAdd1 = date.add(val, 'days')
+          }else{
+            if(i == 0) {
+              dateAdd1 = date.subtract(val, 'days')
+            }else {
+              dateAdd1 = date.add(val, 'days')
+            }
+          }
           let dayOfWeekAdd1 = dateAdd1.format('dddd');
           if(dayOfWeekAdd1 != 'Saturday' && dayOfWeekAdd1 != 'Sunday'){
             if(holidayArray.filter((a) => a.locdate.toString() == dateAdd1.format('YYYYMMDD')).length < 1){
