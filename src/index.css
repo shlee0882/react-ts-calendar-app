@@ -3,9 +3,10 @@ body,
 div#root,
 div.App {
     margin: 0;
-    height: 100%;
-    overflow: hidden;
+    height: auto;
 }
+
+
 
 .color-red {
     color: #d10000;
@@ -13,6 +14,10 @@ div.App {
 
 .color-blue {
     color: blue;
+}
+
+.color-bg-yellow {
+    background-color: lightblue;
 }
 
 body {
@@ -23,7 +28,6 @@ body {
 .div-center {
     text-align: center;
     margin: auto;
-    width: 80%;
 }
 
 .div {
@@ -34,11 +38,35 @@ body {
 
 
 .ellipsis {
-    width: "80px";
-    height: "50px";
+    height: auto;
     overflow: hidden;
+    width: 100%;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+.box {
+    width: 33%;
+    height: 607.6px;
+    margin: 5px;
+}
+
+.selectBox1 {
+    width: 30%;
+    margin-right: 1%;
+    display: inline-block;
+}
+
+.holidaySearch1 {
+    width: 19%;
+}
+
+.react-calendar__tile--hasActive {
+    background-color: none;
 }
