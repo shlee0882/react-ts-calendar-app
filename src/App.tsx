@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Placeholder from 'react-bootstrap/Placeholder';
 import Button from 'react-bootstrap/Button';
 import { ChangeEvent, useRef, useState, useEffect } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import BeatLoader from "react-spinners/BeatLoader";
 import moment from 'moment';
 import axios from 'axios'
 let selectHolidayCnt = Array.from({length: 4}, (_, i) => i + 1).splice(0, 2)
@@ -27,11 +29,13 @@ const App = () => {
   const [selectedOption, setSelectedOption] = useState(year);
   const [holidayArray, setHolidayArray] = useState<Array<RtnArrType>>([]);
   const [holidayRecArray, setHolidayRecArray] = useState([]);
-  
   const [data, setData] = useState(null);
-  const [error, setError] = useState<null>(null);
- 
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const fetchData = async () => {
+    setError(false);
+    setLoading(true);
     try {
       let reqUri = rtnReqUriAppend(selectedOption)
       const response = await axios.get(reqUri);
@@ -42,8 +46,9 @@ const App = () => {
       const arrDayArr:any = recHolidayCalc(holidayArray, selectHoliday)
       setHolidayRecArray(arrDayArr)
     } catch (err) {
-      setError(err as null);
+      setError(true);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -78,20 +83,36 @@ const App = () => {
         fetchData();
       }
       }>휴가 검색!!</Button>
-      <div style={{display:'flex', flexWrap: 'nowrap'}}>
-        {items1.map((item1:string, index:number) => (
-          <CalendarComponents key={index} year={selectedOption} month={item1} holidayArray={holidayArray} holidayRecArray={holidayRecArray} selectHoliday={selectHoliday}></CalendarComponents>
-        ))}
-      </div>
-      <div style={{display:'flex', flexWrap: 'nowrap'}}>
-        {items2.map((item2:string, index:number) => (
-          <CalendarComponents key={index} year={selectedOption} month={item2} holidayArray={holidayArray} holidayRecArray={holidayRecArray} selectHoliday={selectHoliday}></CalendarComponents>
-        ))}
-      </div>
-      <div style={{display:'flex', flexWrap: 'nowrap'}}>
-        {items3.map((item3:string, index:number) => (
-          <CalendarComponents key={index} year={selectedOption} month={item3} holidayArray={holidayArray} holidayRecArray={holidayRecArray} selectHoliday={selectHoliday}></CalendarComponents>
-        ))}
+      <div>
+        {loading ? (
+          <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <BeatLoader size={70} color="green"/>
+          </div>
+        ) : 
+          error? (
+          <Alert variant="danger" onClose={() => setError(false)} dismissible>
+            <Alert.Heading>Error</Alert.Heading>
+            <p>휴일데이터를 갖고 오지 못했습니다.</p>
+          </Alert>
+          ) : (
+          <>
+            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+              {items1.map((item1: string, index: number) => (
+                <CalendarComponents key={index} year={selectedOption} month={item1} holidayArray={holidayArray} holidayRecArray={holidayRecArray} selectHoliday={selectHoliday}></CalendarComponents>
+              ))}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+              {items2.map((item2: string, index: number) => (
+                <CalendarComponents key={index} year={selectedOption} month={item2} holidayArray={holidayArray} holidayRecArray={holidayRecArray} selectHoliday={selectHoliday}></CalendarComponents>
+              ))}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+              {items3.map((item3: string, index: number) => (
+                <CalendarComponents key={index} year={selectedOption} month={item3} holidayArray={holidayArray} holidayRecArray={holidayRecArray} selectHoliday={selectHoliday}></CalendarComponents>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
