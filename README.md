@@ -10,7 +10,7 @@ ReactJs, TypeScript, Vite를 사용해<br>
 <br>
 <br>
 
-## 사용방법
+## 사용 방법
 
 - 연도와 사용가능한 휴가를 선택합니다.
 - 토요일, 일요일, 법정공휴일, 대체공휴일 (공공 API 데이터 활용 )을 가져옵니다. 
@@ -19,7 +19,13 @@ ReactJs, TypeScript, Vite를 사용해<br>
 - 휴가는 최대 2일까지 선택가능합니다.
 <br>
 
-## 사용기술
+## 기능 요약
+
+- 공휴일 정보 제공 및 휴가 추천조회 기능
+
+![조회기능](/src/assets/gif/ts_rec_holiday.gif)
+
+## 사용 기술
 
 - vite, typescript
 - react, react-bootstrap, react-calendar, momentjs, use[State, Effect], axios
@@ -33,7 +39,7 @@ https://shlee0882.github.io/react-ts-calendar-app/
 
 <br>
 
-## 실행하기
+## 실행 하기
 ```
 npm install
 npm run dev
