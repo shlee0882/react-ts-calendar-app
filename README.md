@@ -2,8 +2,7 @@
 
 ## 개요
 
-ReactJs, TypeScript, Vite를 사용해<br>
-휴가를 너무 가고 싶어하는 직장인들을 위해<br>
+ReactJs, TypeScript, Vite를 사용해 만든 프로젝트이며<br>
 적은 휴가일수를 가지고<br>
 휴가를 효율적으로 사용할 수 있게<br> 
 추천해주는 [휴가 추천 토이 프로젝트] 입니다.
